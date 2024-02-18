@@ -1,18 +1,22 @@
 import speech_recognition as sr
 import pyautogui
 import time
+import helper_functions as hf
 
-def speech_to_command():
-    time.sleep(5)
+def speech_to_command(MICROPHONE_INDEX):
+    time.sleep(2)
     recognizer = sr.Recognizer()
-    with sr.Microphone() as source:
-        print("Speak Anything :")
-        speech = recognizer.listen(source)
-        try:
-            command = recognizer.recognize_google(speech)
-            if(command == "play" or command == "pause"):
-                pyautogui.press('space')
-        except:
-            print("Sorry could not recognize your voice")
+    microphone = sr.Microphone(device_index = MICROPHONE_INDEX)
+    with microphone as source:
+        print("Listening!")
+        while True:
+            speech = recognizer.listen(source)
+            try:
+                command = recognizer.recognize_google(speech)
+                print(command)
+                print(hf.command_to_action(command))
+            except:
+                print("Sorry could not recognize your voice")
 
-speech_to_command()
+MICROPHONE_INDEX = 2
+speech_to_command(MICROPHONE_INDEX)
