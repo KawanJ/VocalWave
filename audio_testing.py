@@ -13,8 +13,12 @@ def get_audio(MICROPHONE_INDEX):
             with open("audio.wav", "wb") as file:
                 file.write(speech.get_wav_data())
             print("Audio saved to audio.wav")
+        except sr.UnknownValueError:
+            print("Google Speech Recognition could not understand audio")
+        except sr.RequestError as e:
+            print("Could not request results from Google Speech Recognition service; {0}".format(e))
         except:
-            print("Sorry could not recognize your voice")
+            print("Unknown Error")
 
 MICROPHONE_INDEX = 2
 get_audio(MICROPHONE_INDEX)
