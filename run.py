@@ -10,7 +10,7 @@ def speech_to_command(MICROPHONE_INDEX):
     with microphone as source:
         print("Listening!")
         while True:
-            speech = recognizer.listen(source)
+            speech = recognizer.listen(source, timeout=3)
             try:
                 command = recognizer.recognize_google(speech)
                 print(command)
@@ -18,5 +18,5 @@ def speech_to_command(MICROPHONE_INDEX):
             except:
                 print("Sorry could not recognize your voice")
 
-MICROPHONE_INDEX = 2
+MICROPHONE_INDEX = 1
 speech_to_command(MICROPHONE_INDEX)

@@ -16,5 +16,5 @@ def get_audio(MICROPHONE_INDEX):
         except:
             print("Sorry could not recognize your voice")
 
-MICROPHONE_INDEX = 2
+MICROPHONE_INDEX = 1
 get_audio(MICROPHONE_INDEX)

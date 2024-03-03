@@ -1,2 +1,2 @@
-Set-ExecutionPolicy Unrestricted -Scope Process
-.venv\Scripts\activate
+Set-ExecutionPolicy Unrestricted -Scope Process (telling os that its fine to run any process in this directory)
+.venv\Scripts\activate 
