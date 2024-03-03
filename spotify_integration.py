@@ -3,13 +3,16 @@ import pyautogui
 action_to_keyboard_mapping = {
     "play" : ["space"],
     "pause" : ["space"],
-    "next song" : ["alt", "right"],
-    "previous song" : ["alt", "left"],
-    "raise volume" : ["alt", "up"],
-    "lower volume" : ["alt", "down"],
+    "stop" : ["space"],
+    "next" : ["ctrl", "right"],
+    "previous" : ["ctrl", "left"],
+    "raise" : ["ctrl", "up"],
+    "increase" : ["ctrl", "up"],
+    "lower" : ["ctrl", "down"],
+    "decrease" : ["ctrl", "down"],
     "like" : ["alt", "shift", "b"],
-    "shuffle" : ["alt", "s"],
-    "repeat" : ["alt", "r"],
+    "shuffle" : ["ctrl", "s"],
+    "repeat" : ["ctrl", "r"],
 }
 
 def command_to_action(command):
