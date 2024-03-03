@@ -9,7 +9,7 @@ action_to_keyboard_mapping = {
     "lower volume" : ["alt", "down"],
     "like" : ["alt", "shift", "b"],
     "shuffle" : ["alt", "s"],
-    "repeat" : ["alt", "r"]
+    "repeat" : ["alt", "r"],
 }
 
 def command_to_action(command):
