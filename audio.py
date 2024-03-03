@@ -1,5 +1,6 @@
 import speech_recognition as sr
 import time
+import nlp as nlp
 import spotify_integration as spotify
 import global_variables as gv
 
@@ -14,8 +15,10 @@ def recognize_speech(recognizer, speech):
 def speech_to_command(recognizer, source):
     speech = recognizer.listen(source, timeout=5)
     sentence = recognize_speech(recognizer, speech)
+    command = nlp.sentence_to_keyword(sentence)
     print(sentence)
-    print(spotify.command_to_action(sentence))
+    print(command)
+    print(spotify.command_to_action(command))
 
 def start_audio_mode():
     time.sleep(2)
@@ -27,9 +30,10 @@ def start_audio_mode():
         while True:
             speech = recognizer.listen(source, phrase_time_limit=3, timeout=3)
             try:
-                input = recognize_speech(recognizer, speech)
-                print(input)
-                if input == gv.ACTIVATION_COMMAND:
+                command = recognize_speech(recognizer, speech)
+                print(command)
+                if nlp.clean_command(command) == gv.ACTIVATION_COMMAND:
+                    print('Listening to command')
                     speech_to_command(recognizer, source)
             except sr.UnknownValueError:
                 print("Recognition Module could not understand audio")
@@ -49,8 +53,10 @@ def start_audio_mode_without_activation():
             speech = recognizer.listen(source, phrase_time_limit=5, timeout=5)
             try:
                 sentence = recognize_speech(recognizer, speech)
+                command = nlp.sentence_to_keyword(sentence)
                 print(sentence)
-                print(spotify.command_to_action(sentence))
+                print(command)
+                print(spotify.command_to_action(command))
             except sr.UnknownValueError:
                 print("Recognition Module could not understand audio")
             except sr.RequestError as e:
