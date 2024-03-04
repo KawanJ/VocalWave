@@ -1,8 +1,8 @@
 import speech_recognition as sr
 import time
-import nlp as nlp
-import spotify_integration as spotify
-import global_variables as gv
+import Helper_Files.nlp as nlp
+import Audio_Mode.spotify_integration as spotify
+import Helper_Files.global_variables as gv
 
 def recognize_speech(recognizer, speech):
     if gv.RECOGNITION_METHOD == "google":
