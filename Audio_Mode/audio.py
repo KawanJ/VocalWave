@@ -1,8 +1,21 @@
 import speech_recognition as sr
 import time
-import nlp as nlp
-import spotify_integration as spotify
-import global_variables as gv
+import pyttsx3
+import Helper_Files.nlp as nlp
+import Audio_Mode.spotify_integration as spotify
+import Helper_Files.global_variables as gv
+
+# Initialize the text-to-speech engine
+def initialize_TTS():
+    engine = pyttsx3.init()
+    engine.setProperty('rate', 150)    # Speed of speech
+    engine.setProperty('volume', 0.6)  # Volume (0.0 to 1.0)
+    return engine
+
+def run_TTS(text):
+    tts_engine = initialize_TTS()
+    tts_engine.say(text)
+    tts_engine.runAndWait()
 
 def recognize_speech(recognizer, speech):
     if gv.RECOGNITION_METHOD == "google":
@@ -18,10 +31,14 @@ def speech_to_command(recognizer, source):
     command = nlp.sentence_to_keyword(sentence)
     print(sentence)
     print(command)
-    print(spotify.command_to_action(command))
+    command_status = spotify.command_to_action(command)
+    if command_status == "Invalid Command":
+        run_TTS("Could not understand. Please try again")
+        
 
 def start_audio_mode():
     time.sleep(2)
+    run_TTS("Project started in Audio mode")
     recognizer = sr.Recognizer()
     microphone = sr.Microphone(device_index = gv.MICROPHONE_INDEX)
     with microphone as source:
@@ -44,6 +61,7 @@ def start_audio_mode():
 
 def start_audio_mode_without_activation():
     time.sleep(2)
+    run_TTS("Project started in Audio mode without activation keyword")
     recognizer = sr.Recognizer()
     microphone = sr.Microphone(device_index = gv.MICROPHONE_INDEX)
     with microphone as source:
@@ -56,7 +74,10 @@ def start_audio_mode_without_activation():
                 command = nlp.sentence_to_keyword(sentence)
                 print(sentence)
                 print(command)
-                print(spotify.command_to_action(command))
+                command_status = spotify.command_to_action(command)
+                if command_status == "Invalid Command":
+                    run_TTS("Could not understand. Please try again")
+                    
             except sr.UnknownValueError:
                 print("Recognition Module could not understand audio")
             except sr.RequestError as e:
