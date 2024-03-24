@@ -2,7 +2,7 @@ import speech_recognition as sr
 import time
 import pyttsx3
 import Helper_Files.nlp as nlp
-import Audio_Mode.spotify_integration as spotify
+import Helper_Files.spotify_integration as spotify
 import Helper_Files.global_variables as gv
 
 # Initialize the text-to-speech engine
