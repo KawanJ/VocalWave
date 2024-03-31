@@ -45,7 +45,7 @@ def start_audio_mode():
         recognizer.adjust_for_ambient_noise(source)
         print("Listening!")
         while True:
-            speech = recognizer.listen(source, phrase_time_limit=3, timeout=3)
+            speech = recognizer.listen(source, phrase_time_limit=4, timeout=3)
             try:
                 command = recognize_speech(recognizer, speech)
                 print(command)
@@ -68,15 +68,13 @@ def start_audio_mode_without_activation():
         recognizer.adjust_for_ambient_noise(source)
         print("Listening!")
         while True:
-            speech = recognizer.listen(source, phrase_time_limit=5, timeout=5)
+            speech = recognizer.listen(source, phrase_time_limit=6, timeout=5)
             try:
                 sentence = recognize_speech(recognizer, speech)
                 command = nlp.sentence_to_keyword(sentence)
                 print(sentence)
-                print(command)
+                print("Command: ", command)
                 command_status = spotify.command_to_action(command)
-                if command_status == "Invalid Command":
-                    run_TTS("Could not understand. Please try again")
                     
             except sr.UnknownValueError:
                 print("Recognition Module could not understand audio")
