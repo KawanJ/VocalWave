@@ -26,7 +26,7 @@ def recognize_speech(recognizer, speech):
         raise ValueError("Invalid recognition method specified")
 
 def speech_to_command(recognizer, source):
-    speech = recognizer.listen(source, timeout=5)
+    speech = recognizer.listen(source, phrase_time_limit=5)
     sentence = recognize_speech(recognizer, speech)
     command = nlp.sentence_to_keyword(sentence)
     print(sentence)
@@ -43,14 +43,14 @@ def start_audio_mode():
     microphone = sr.Microphone(device_index = gv.MICROPHONE_INDEX)
     with microphone as source:
         recognizer.adjust_for_ambient_noise(source)
-        print("Listening!")
+        print("Listening for Activation Command!")
         while True:
-            speech = recognizer.listen(source, phrase_time_limit=4, timeout=3)
+            speech = recognizer.listen(source, phrase_time_limit=4)
             try:
                 command = recognize_speech(recognizer, speech)
                 print(command)
                 if nlp.clean_command(command) == gv.ACTIVATION_COMMAND:
-                    print('Listening to command')
+                    print('Listening for Spotify Command')
                     speech_to_command(recognizer, source)
             except sr.UnknownValueError:
                 print("Recognition Module could not understand audio")
@@ -68,7 +68,7 @@ def start_audio_mode_without_activation():
         recognizer.adjust_for_ambient_noise(source)
         print("Listening!")
         while True:
-            speech = recognizer.listen(source, phrase_time_limit=6, timeout=5)
+            speech = recognizer.listen(source, phrase_time_limit=6)
             try:
                 sentence = recognize_speech(recognizer, speech)
                 command = nlp.sentence_to_keyword(sentence)

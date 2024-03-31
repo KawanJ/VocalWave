@@ -4,7 +4,7 @@ import pandas as pd
 import regex as re
 
 STOPWORDS = nltk.corpus.stopwords.words('english')
-COMMANDS = ['play', 'start', 'pause', 'like', 'shuffle', 'mix', 'random', 'liked', 'next', 'previous', 'rewind', 'repeat', 'stop']
+COMMANDS = ['play', 'start', 'pause', 'like', 'shuffle', 'mix', 'random', 'liked', 'next', 'previous', 'rewind', 'repeat', 'stop', 'increase', 'decrease']
 
 #data = pd.read_csv(r'C:\Users\Admin\Desktop\Major Project\Final Project\VocalWave\Sentences.csv')
 
@@ -47,6 +47,10 @@ def matched_keyword(input_tokens):
         return 'shuffle'
     if ('repeat' in matched or 'rewind' in matched):
         return 'repeat'
+    if ('increase' in matched):
+        return 'increase'
+    if ('decrease' in matched):
+        return 'decrease'
     
     return "No command found"
 

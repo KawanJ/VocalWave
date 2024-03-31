@@ -1,6 +1,7 @@
 import argparse
 import Audio_Mode.audio as audio
 
+# Command Line Arguments
 parser = argparse.ArgumentParser(description='VocalWave')
 parser.add_argument('--no-activation', action='store_true', help='Flag to disable activation keyword in audiomode')
 args = parser.parse_args()
