@@ -4,7 +4,7 @@ import pandas as pd
 import regex as re
 
 STOPWORDS = nltk.corpus.stopwords.words('english')
-COMMANDS = ['play', 'start', 'pause', 'like', 'shuffle', 'mix', 'random', 'liked', 'next', 'previous', 'rewind', 'repeat', 'stop', 'increase', 'decrease']
+COMMANDS = ['play', 'start', 'pause', 'like', 'shuffle', 'mix', 'random', 'liked', 'next', 'previous', 'rewind', 'repeat', 'stop', 'increase', 'decrease'] 
 
 #data = pd.read_csv(r'C:\Users\Admin\Desktop\Major Project\Final Project\VocalWave\Sentences.csv')
 
