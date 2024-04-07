@@ -86,7 +86,7 @@ def start_gesture_mode():
                 # Drawing part
                 debug_image = draw_bounding_rect(debug_image, brect)
                 debug_image = draw_landmarks(debug_image, landmark_list)
-                # debug_image = draw_info_text(debug_image, brect, handedness, keypoint_classifier_labels[hand_sign_id])
+                debug_image = draw_info_text(debug_image, brect, handedness, keypoint_classifier_labels[hand_sign_id])
 
         debug_image = draw_info(debug_image, mode, number)
 
@@ -155,8 +155,7 @@ def pre_process_landmark(landmark_list):
         temp_landmark_list[index][1] = temp_landmark_list[index][1] - base_y
 
     # Convert to a one-dimensional list
-    temp_landmark_list = list(
-        itertools.chain.from_iterable(temp_landmark_list))
+    temp_landmark_list = list(itertools.chain.from_iterable(temp_landmark_list))
 
     # Normalization
     max_value = max(list(map(abs, temp_landmark_list)))
