@@ -5,7 +5,7 @@ action_to_keyboard_mapping = {
     "pause" : ["space"],
     "stop" : ["space"],
     "next" : ["ctrl", "right"],
-    "previous" : ["ctrl", "left"],
+    "previous" : ["ctrl", "left", "ctrl", "left"],
     "raise" : ["ctrl", "up"],
     "increase" : ["ctrl", "up"],
     "lower" : ["ctrl", "down"],
