@@ -81,7 +81,7 @@ def start_gesture_mode():
                 hand_sign_id = keypoint_classifier(pre_processed_landmark_list)
 
                 # Spotify Integration 
-                # spotify_action(current_command, consecutive_command_count, keypoint_classifier_labels[hand_sign_id])
+                current_command, consecutive_command_count = spotify_action(current_command, consecutive_command_count, keypoint_classifier_labels[hand_sign_id])
 
                 # Drawing part
                 debug_image = draw_bounding_rect(debug_image, brect)
@@ -180,6 +180,7 @@ def logging_csv(number, mode, landmark_list):
     return
 
 def spotify_action(current_command, consecutive_command_count, label):
+    print(current_command)
     if current_command != label:
         consecutive_command_count = 0
         current_command = label
@@ -189,6 +190,8 @@ def spotify_action(current_command, consecutive_command_count, label):
     if consecutive_command_count >= 60:
         consecutive_command_count = 0
         spotify.command_to_action(current_command)
+
+    return current_command, consecutive_command_count
 
 
 def draw_landmarks(image, landmark_point):
