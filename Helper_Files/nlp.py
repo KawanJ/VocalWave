@@ -28,31 +28,27 @@ def remove_stopwords(input_tokens):
     return tokens_without_stopwords   
 
 def matched_keyword(input_tokens):
-    matched = []
     for word in input_tokens:
-        if word in COMMANDS:
-            matched.append(word)  
-
-    if ('stop' in matched or 'pause' in matched):
-        return 'stop'
-    if ('next' in matched):
-        return 'next'
-    if ('previous' in matched):
-        return 'previous'
-    if ('play' in matched or 'start' in matched):
-        return 'play'
-    if ('like' in matched or 'liked' in matched):
-        return 'like'
-    if ('shuffle' in matched or 'mix' in matched or 'random' in matched):
-        return 'shuffle'
-    if ('repeat' in matched or 'rewind' in matched):
-        return 'repeat'
-    if ('increase' in matched):
-        return 'increase'
-    if ('decrease' in matched):
-        return 'decrease'
-    
+        if word in ('stop', 'pause'):
+            return 'stop'
+        elif word == 'next':
+            return 'next'
+        elif word == 'previous':
+            return 'previous'
+        elif word in ('play', 'start'):
+            return 'play'
+        elif word in ('like', 'liked'):
+            return 'like'
+        elif word in ('shuffle', 'mix', 'random'):
+            return 'shuffle'
+        elif word in ('repeat', 'rewind'):
+            return 'repeat'
+        elif word == 'increase':
+            return 'increase'
+        elif word == 'decrease':
+            return 'decrease'
     return "No command found"
+
 
 def sentence_to_keyword(sentence):
     lowercase_sentence = make_lowercase(sentence)
