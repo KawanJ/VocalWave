@@ -2,13 +2,20 @@ import argparse
 import Audio_Mode.audio as audio
 import Gesture_Mode.gesture as gesture
 
-gesture.start_gesture_mode()
-# Command Line Arguments
-# parser = argparse.ArgumentParser(description='VocalWave')
-# parser.add_argument('--no-activation', action='store_true', help='Flag to disable activation keyword in audiomode')
-# args = parser.parse_args()
+# Create the parser
+parser = argparse.ArgumentParser(description='Process some modes.')
 
-# if args.no_activation:
-#     audio.start_audio_mode_without_activation()
-# else:
-#     audio.start_audio_mode()
+# Add arguments
+parser.add_argument('mode', choices=['gesture', 'audio'], help='Select the mode (gesture or audio)')
+parser.add_argument('--activation_keyword', help='Activation keyword for audio mode')
+
+# Parse the arguments
+args = parser.parse_args()
+
+if args.mode == 'gesture':
+    gesture.start_gesture_mode()
+elif args.mode == 'audio':
+    if args.activation_keyword:
+        audio.start_audio_mode
+    else:
+        audio.start_audio_mode_without_activation
