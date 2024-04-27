@@ -16,6 +16,6 @@ if args.mode == 'gesture':
     gesture.start_gesture_mode()
 elif args.mode == 'audio':
     if args.activation_keyword:
-        audio.start_audio_mode
+        audio.start_audio_mode()
     else:
-        audio.start_audio_mode_without_activation
+        audio.start_audio_mode_without_activation()
