@@ -180,7 +180,7 @@ def logging_csv(number, mode, landmark_list):
     return
 
 def spotify_action(current_command, consecutive_command_count, label):
-    print(current_command)
+    # print(current_command)
     if current_command != label:
         consecutive_command_count = 0
         current_command = label
